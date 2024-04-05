@@ -127,6 +127,10 @@ class ViewController: UIViewController {
             calculatorHistoryItem.removeAll()
     }
     
+    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) {
+        
+    }
+    
     func calculate() throws -> Double {
         guard case .number(let firstNumber) = calculatorHistoryItem[0] else { return 0 }
         var currentResult = firstNumber

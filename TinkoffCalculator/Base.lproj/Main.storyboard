@@ -314,6 +314,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="ndF-jC-k5V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="3.3482142857142856"/>
         </scene>
@@ -331,11 +332,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFs-xC-eqD">
+                                <rect key="frame" x="161.5" y="475" width="91" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Закрыть"/>
+                                <connections>
+                                    <segue destination="ndF-jC-k5V" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="hwK-Pg-Wct"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bhk-zB-i4I"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                         <constraints>
                             <constraint firstItem="TSc-7b-0hK" firstAttribute="centerX" secondItem="7cD-ot-aFy" secondAttribute="centerX" id="EuH-Qy-kUG"/>
+                            <constraint firstItem="HFs-xC-eqD" firstAttribute="centerX" secondItem="7cD-ot-aFy" secondAttribute="centerX" id="PZS-Fd-f1F"/>
+                            <constraint firstItem="HFs-xC-eqD" firstAttribute="top" secondItem="TSc-7b-0hK" secondAttribute="bottom" constant="45.5" id="ULn-5J-8tj"/>
                             <constraint firstItem="TSc-7b-0hK" firstAttribute="centerY" secondItem="7cD-ot-aFy" secondAttribute="centerY" id="go9-Dq-1SB"/>
                         </constraints>
                     </view>
