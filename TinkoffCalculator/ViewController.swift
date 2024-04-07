@@ -147,6 +147,13 @@ class ViewController: UIViewController {
         return currentResult
     }
     
+//    проверяем какой Segue сработал
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "CALCULATIONS_LIST",
+              let calculationListVC = segue.destination as? CalculationListViewContoller else { return }
+        calculationListVC.result = label.text
+    }
+    
     func resetLabelText() {
         label.text = "0"
     }
