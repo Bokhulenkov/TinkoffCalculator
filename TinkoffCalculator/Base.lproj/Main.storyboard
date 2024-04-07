@@ -202,9 +202,6 @@
                                 <state key="normal">
                                     <imageReference key="image" image="clock" catalog="system" symbolScale="large"/>
                                 </state>
-                                <connections>
-                                    <segue destination="hxh-HJ-sMi" kind="show" identifier="CALCULATIONS_LIST" animates="NO" id="gwG-tr-Rr4"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOb-Ia-Kbb">
                                 <rect key="frame" x="207" y="438.5" width="103.5" height="106"/>
@@ -323,7 +320,7 @@
             <objects>
                 <viewController id="hxh-HJ-sMi" customClass="CalculationListViewContoller" customModule="TinkoffCalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7cD-ot-aFy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSc-7b-0hK" customClass="CalculationListViewContoller">
@@ -333,7 +330,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFs-xC-eqD">
-                                <rect key="frame" x="161.5" y="464.5" width="91" height="35"/>
+                                <rect key="frame" x="161.5" y="493.5" width="91" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Закрыть"/>
                                 <connections>
@@ -341,7 +338,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Результат" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk0-l7-QFp">
-                                <rect key="frame" x="167.5" y="369" width="79" height="21"/>
+                                <rect key="frame" x="167.5" y="398" width="79" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
