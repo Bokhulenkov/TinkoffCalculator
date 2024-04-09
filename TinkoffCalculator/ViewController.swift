@@ -58,6 +58,10 @@ class ViewController: UIViewController {
     var calculatorHistoryItem: [CalculatorHistoryItem] = []
     
     //    MARK: - Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,7 +130,7 @@ class ViewController: UIViewController {
             
             calculatorHistoryItem.removeAll()
     }
-    
+        
     func calculate() throws -> Double {
         guard case .number(let firstNumber) = calculatorHistoryItem[0] else { return 0 }
         var currentResult = firstNumber
@@ -143,18 +147,11 @@ class ViewController: UIViewController {
         return currentResult
     }
     
-//    @IBAction func showCalculationList(_ sender: Any) {
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let calculationListVC = sb.instantiateViewController(withIdentifier: "CalculationListViewContoller")
-        
-//        передаем значение в label
-//        if let vc = calculationListVC as? CalculationListViewContoller {
-//            vc.result = label.text
-//        }
-//        
-//        show(calculationListVC, sender: self)
-//        
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "CALCULATIONS_LIST",
+              let calculationListVC = segue.destination as? CalculationListViewContoller else { return }
+        calculationListVC.result = label.text
+    }
     
     func resetLabelText() {
         label.text = "0"
