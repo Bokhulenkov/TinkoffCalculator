@@ -33,6 +33,11 @@ class CalculationListViewContoller: UIViewController {
     
     //    MARK: - Helpers
     
+     
+    @IBAction func dismissVC(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
     private func initialize() {
         modalPresentationStyle = .fullScreen
         modalPresentationStyle = .overCurrentContext

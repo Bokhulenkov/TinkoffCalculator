@@ -127,10 +127,6 @@ class ViewController: UIViewController {
             calculatorHistoryItem.removeAll()
     }
     
-    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue) {
-        
-    }
-    
     func calculate() throws -> Double {
         guard case .number(let firstNumber) = calculatorHistoryItem[0] else { return 0 }
         var currentResult = firstNumber
@@ -147,11 +143,17 @@ class ViewController: UIViewController {
         return currentResult
     }
     
-//    проверяем какой Segue сработал
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "CALCULATIONS_LIST",
-              let calculationListVC = segue.destination as? CalculationListViewContoller else { return }
-        calculationListVC.result = label.text
+    @IBAction func showCalculationList(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let calculationListVC = sb.instantiateViewController(withIdentifier: "CalculationListViewContoller")
+        
+//        передаем значение в label
+        if let vc = calculationListVC as? CalculationListViewContoller {
+            vc.result = label.text
+        }
+        
+        show(calculationListVC, sender: self)
+        
     }
     
     func resetLabelText() {

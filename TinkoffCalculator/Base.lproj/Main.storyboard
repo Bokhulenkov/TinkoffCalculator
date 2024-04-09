@@ -202,6 +202,9 @@
                                 <state key="normal">
                                     <imageReference key="image" image="clock" catalog="system" symbolScale="large"/>
                                 </state>
+                                <connections>
+                                    <action selector="showCalculationList:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2WC-Sv-nnN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eOb-Ia-Kbb">
                                 <rect key="frame" x="207" y="438.5" width="103.5" height="106"/>
@@ -318,7 +321,7 @@
         <!--Calculation List View Contoller-->
         <scene sceneID="G4M-3R-CvX">
             <objects>
-                <viewController id="hxh-HJ-sMi" customClass="CalculationListViewContoller" customModule="TinkoffCalculator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalculationListViewContoller" id="hxh-HJ-sMi" customClass="CalculationListViewContoller" customModule="TinkoffCalculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7cD-ot-aFy">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -334,6 +337,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Закрыть"/>
                                 <connections>
+                                    <action selector="dismissVC:" destination="hxh-HJ-sMi" eventType="touchUpInside" id="FL1-uu-685"/>
                                     <segue destination="ndF-jC-k5V" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="hwK-Pg-Wct"/>
                                 </connections>
                             </button>
