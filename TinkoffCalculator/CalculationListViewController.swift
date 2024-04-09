@@ -38,13 +38,12 @@ class CalculationListViewContoller: UIViewController {
     
     //    MARK: - Helpers
     
-     
+//     кнопка закрыть
     @IBAction func dismissVC(_ sender: Any) {
-        dismiss(animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     private func initialize() {
         modalPresentationStyle = .fullScreen
-        modalPresentationStyle = .overCurrentContext
     }
 }

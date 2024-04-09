@@ -130,6 +130,17 @@ class ViewController: UIViewController {
             
             calculatorHistoryItem.removeAll()
     }
+    
+    @IBAction func shawCalculationsList(_ sender: UIButton) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let calculationsListVC = sb.instantiateViewController(withIdentifier: "CalculationListViewContoller")
+        if let vc = calculationsListVC as? CalculationListViewContoller {
+            vc.result = label.text
+        }
+        
+        navigationController?.pushViewController(calculationsListVC, animated: true)
+    }
+    
         
     func calculate() throws -> Double {
         guard case .number(let firstNumber) = calculatorHistoryItem[0] else { return 0 }
@@ -145,12 +156,6 @@ class ViewController: UIViewController {
             try currentResult = operation.calculate(currentResult, number)
         }
         return currentResult
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "CALCULATIONS_LIST",
-              let calculationListVC = segue.destination as? CalculationListViewContoller else { return }
-        calculationListVC.result = label.text
     }
     
     func resetLabelText() {
