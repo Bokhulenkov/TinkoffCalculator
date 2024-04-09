@@ -143,18 +143,18 @@ class ViewController: UIViewController {
         return currentResult
     }
     
-    @IBAction func showCalculationList(_ sender: Any) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let calculationListVC = sb.instantiateViewController(withIdentifier: "CalculationListViewContoller")
+//    @IBAction func showCalculationList(_ sender: Any) {
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let calculationListVC = sb.instantiateViewController(withIdentifier: "CalculationListViewContoller")
         
 //        передаем значение в label
-        if let vc = calculationListVC as? CalculationListViewContoller {
-            vc.result = label.text
-        }
-        
-        show(calculationListVC, sender: self)
-        
-    }
+//        if let vc = calculationListVC as? CalculationListViewContoller {
+//            vc.result = label.text
+//        }
+//        
+//        show(calculationListVC, sender: self)
+//        
+//    }
     
     func resetLabelText() {
         label.text = "0"
