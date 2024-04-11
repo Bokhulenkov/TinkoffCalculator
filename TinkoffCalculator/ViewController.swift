@@ -40,6 +40,8 @@ class ViewController: UIViewController {
         }
     }
     
+    private var count = 0
+    
 //    хранение данных
     enum CalculatorHistoryItem {
         case number(Double)
@@ -60,7 +62,7 @@ class ViewController: UIViewController {
     //    MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewDidLoad() {
@@ -112,6 +114,9 @@ class ViewController: UIViewController {
     }
     
     @IBAction func calculateButton() {
+        
+        count += 1
+        
         guard
             let labelText = label.text,
             let labelNumber = numberFormatter.number(from: labelText)?.doubleValue
@@ -132,10 +137,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func shawCalculationsList(_ sender: UIButton) {
+
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(withIdentifier: "CalculationListViewContoller")
         if let vc = calculationsListVC as? CalculationListViewContoller {
-            vc.result = label.text
+            if count == 0 {
+                vc.result = "no data"
+            } else { vc.result = label.text }
         }
         
         navigationController?.pushViewController(calculationsListVC, animated: true)
@@ -160,6 +168,7 @@ class ViewController: UIViewController {
     
     func resetLabelText() {
         label.text = "0"
+        count = 0
     }
     
 

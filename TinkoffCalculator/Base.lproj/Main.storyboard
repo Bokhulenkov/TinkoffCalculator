@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Calculator-->
+        <!--Калькулятор-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TinkoffCalculator" customModuleProvider="target" sceneMemberID="viewController">
@@ -196,6 +196,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihu-d1-FdI">
                                 <rect key="frame" x="207" y="361.5" width="103.5" height="100"/>
                                 <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                <accessibility key="accessibilityConfiguration" identifier="historyButton"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -309,7 +310,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="viO-5Z-D5V" secondAttribute="bottom" id="xp1-BT-2Sn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Calculator" id="MhD-3x-Zah"/>
+                    <navigationItem key="navigationItem" title="Калькулятор" id="MhD-3x-Zah"/>
                     <connections>
                         <outlet property="label" destination="jXp-mz-Gox" id="qNf-x9-VUv"/>
                     </connections>
