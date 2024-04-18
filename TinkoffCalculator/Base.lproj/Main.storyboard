@@ -342,6 +342,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="History" id="IRm-p1-bqV"/>
+                    <connections>
+                        <outlet property="tableView" destination="cVu-rp-QGg" id="9XE-RU-a9p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOZ-4u-pQD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
