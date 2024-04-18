@@ -37,6 +37,10 @@ class CalculationListViewContoller: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+//        регистрируем ячейку таблицы
+        let nib = UINib(nibName: "HistoryTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "HistoryTableViewCell")
     }
     
     //    MARK: - Helpers
@@ -62,6 +66,7 @@ extension CalculationListViewContoller: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
         
     }
     
