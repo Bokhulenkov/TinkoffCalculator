@@ -316,7 +316,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="ndF-jC-k5V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="3.3482142857142856"/>
         </scene>
@@ -328,43 +327,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSc-7b-0hK" customClass="CalculationListViewContoller">
-                                <rect key="frame" x="189" y="359" width="36" height="71"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFs-xC-eqD">
-                                <rect key="frame" x="161.5" y="493.5" width="91" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Закрыть"/>
-                                <connections>
-                                    <action selector="dismissVC:" destination="hxh-HJ-sMi" eventType="touchUpInside" id="FL1-uu-685"/>
-                                    <segue destination="ndF-jC-k5V" kind="unwind" unwindAction="unwindActionWithUnwindSegue:" id="hwK-Pg-Wct"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Результат" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tk0-l7-QFp">
-                                <rect key="frame" x="167.5" y="398" width="79" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cVu-rp-QGg">
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bhk-zB-i4I"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                         <constraints>
-                            <constraint firstItem="tk0-l7-QFp" firstAttribute="centerX" secondItem="7cD-ot-aFy" secondAttribute="centerX" id="4zi-w9-yTO"/>
-                            <constraint firstItem="TSc-7b-0hK" firstAttribute="centerX" secondItem="7cD-ot-aFy" secondAttribute="centerX" id="EuH-Qy-kUG"/>
-                            <constraint firstItem="HFs-xC-eqD" firstAttribute="centerX" secondItem="7cD-ot-aFy" secondAttribute="centerX" id="PZS-Fd-f1F"/>
-                            <constraint firstItem="HFs-xC-eqD" firstAttribute="top" secondItem="TSc-7b-0hK" secondAttribute="bottom" constant="45.5" id="ULn-5J-8tj"/>
-                            <constraint firstItem="TSc-7b-0hK" firstAttribute="centerY" secondItem="7cD-ot-aFy" secondAttribute="centerY" id="go9-Dq-1SB"/>
-                            <constraint firstItem="TSc-7b-0hK" firstAttribute="firstBaseline" secondItem="tk0-l7-QFp" secondAttribute="baseline" constant="50" id="vri-ak-aiC"/>
+                            <constraint firstItem="cVu-rp-QGg" firstAttribute="bottom" secondItem="Bhk-zB-i4I" secondAttribute="bottom" id="C9W-sh-Qln"/>
+                            <constraint firstItem="cVu-rp-QGg" firstAttribute="top" secondItem="Bhk-zB-i4I" secondAttribute="top" id="Tpc-XS-iZ8"/>
+                            <constraint firstItem="cVu-rp-QGg" firstAttribute="leading" secondItem="Bhk-zB-i4I" secondAttribute="leading" id="ZmI-2J-hlV"/>
+                            <constraint firstItem="cVu-rp-QGg" firstAttribute="trailing" secondItem="Bhk-zB-i4I" secondAttribute="trailing" id="tL1-Hv-vlu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="History" id="IRm-p1-bqV"/>
-                    <connections>
-                        <outlet property="calculationLabel" destination="TSc-7b-0hK" id="tCr-l3-trY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOZ-4u-pQD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

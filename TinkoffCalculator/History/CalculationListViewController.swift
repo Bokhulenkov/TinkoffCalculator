@@ -9,9 +9,10 @@ import UIKit
 
 class CalculationListViewContoller: UIViewController {
     
-    var result: String?
+    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
     
     @IBOutlet weak var calculationLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super .init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -34,7 +35,8 @@ class CalculationListViewContoller: UIViewController {
     override func viewDidLoad() {
          super.viewDidLoad()
         
-        calculationLabel.text = result
+        tableView.delegate = self
+        tableView.dataSource = self
     }
     
     //    MARK: - Helpers
@@ -47,4 +49,21 @@ class CalculationListViewContoller: UIViewController {
     private func initialize() {
         modalPresentationStyle = .fullScreen
     }
+}
+
+extension CalculationListViewContoller: UITableViewDelegate {
+    
+}
+
+extension CalculationListViewContoller: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+    }
+    
+    
 }

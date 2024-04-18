@@ -7,46 +7,51 @@
 
 import UIKit
 
+enum CalculatorError: Error {
+    case dividedByZero
+}
+
+enum Operation: String {
+    case add = "+"
+    case substract = "-"
+    case multiplay = "x"
+    case divide = "/"
+    
+    func calculate(_ number1: Double, _ number2: Double) throws -> Double {
+        switch self {
+        case .add:
+            return number1 + number2
+        case .substract:
+            return number1 - number2
+        case .multiplay:
+            return number1 * number2
+        case .divide:
+            if number2 == 0 {
+                throw CalculatorError.dividedByZero
+            }
+            return number1 / number2
+        }
+    }
+}
+
+//    хранение данных
+enum CalculationHistoryItem {
+    case number(Double)
+    case operation(Operation)
+}
+
 class ViewController: UIViewController {
     
     //    MARK: - Properties
     
     @IBOutlet weak var label: UILabel!
     
-    enum CalculatorError: Error {
-        case dividedByZero
-    }
-    
-    enum Operation: String {
-        case add = "+"
-        case substract = "-"
-        case multiplay = "x"
-        case divide = "/"
-        
-        func calculate(_ number1: Double, _ number2: Double) throws -> Double {
-            switch self {
-            case .add:
-                return number1 + number2
-            case .substract:
-                return number1 - number2
-            case .multiplay:
-                return number1 * number2
-            case .divide:
-                if number2 == 0 {
-                    throw CalculatorError.dividedByZero
-                }
-                return number1 / number2
-            }
-        }
-    }
-    
     private var count = 0
     
-//    хранение данных
-    enum CalculatorHistoryItem {
-        case number(Double)
-        case operation(Operation)
-    }
+    var calculationHistory: [CalculationHistoryItem] = []
+//    собираем вычисления
+    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+
     
 //    преобразование числа из строки и обратно
     lazy var numberFormatter: NumberFormatter = {
@@ -57,12 +62,10 @@ class ViewController: UIViewController {
         return numberFormatter
     }()
     
-    var calculatorHistoryItem: [CalculatorHistoryItem] = []
-    
     //    MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidLoad() {
@@ -93,7 +96,7 @@ class ViewController: UIViewController {
     
     @IBAction func operationButtonPressed(_ sender: UIButton) {
         guard let buttonText = sender.currentTitle,
-              let operation = Operation(rawValue: buttonText)
+              let buttonOperation = Operation(rawValue: buttonText)
         else { return }
         
 //        проверяем на наличие text label и конвертируем его в число
@@ -102,38 +105,37 @@ class ViewController: UIViewController {
             let labelNumber = numberFormatter.number(from: labelText)?.doubleValue
         else { return }
         
-        calculatorHistoryItem.append(.number(labelNumber))
-        calculatorHistoryItem.append(.operation(operation))
+        calculationHistory.append(.number(labelNumber))
+        calculationHistory.append(.operation(buttonOperation))
 
-        label.text = ""
+        label.text = "" // resetLabelText()
     }
     
     @IBAction func clearButton() {
-        calculatorHistoryItem.removeAll()
+        calculationHistory.removeAll()
         resetLabelText()
     }
     
     @IBAction func calculateButton() {
-        
-        count += 1
         
         guard
             let labelText = label.text,
             let labelNumber = numberFormatter.number(from: labelText)?.doubleValue
         else { return }
         
-        calculatorHistoryItem.append(.number(labelNumber))
+        calculationHistory.append(.number(labelNumber))
         
         do {
             let result = try calculate()
             
             //        отображаем отформатированное число
             label.text = numberFormatter.string(from: NSNumber(value: result))
+            calculations.append((calculationHistory, result))
         } catch {
             label.text = "Warning!!!"
         }
             
-            calculatorHistoryItem.removeAll()
+            calculationHistory.removeAll()
     }
     
     @IBAction func shawCalculationsList(_ sender: UIButton) {
@@ -141,9 +143,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(withIdentifier: "CalculationListViewContoller")
         if let vc = calculationsListVC as? CalculationListViewContoller {
-            if count == 0 {
-                vc.result = "no data"
-            } else { vc.result = label.text }
+             vc.calculations = calculations
         }
         
         navigationController?.pushViewController(calculationsListVC, animated: true)
@@ -151,14 +151,14 @@ class ViewController: UIViewController {
     
         
     func calculate() throws -> Double {
-        guard case .number(let firstNumber) = calculatorHistoryItem[0] else { return 0 }
+        guard case .number(let firstNumber) = calculationHistory[0] else { return 0 }
         var currentResult = firstNumber
         
 //        проходим по массиву и получаем пару  operation number
-        for index in stride(from: 1, to: calculatorHistoryItem.count, by: 2) {
+        for index in stride(from: 1, to: calculationHistory.count, by: 2) {
             guard
-                case .operation(let operation) = calculatorHistoryItem[index],
-                case .number(let number) = calculatorHistoryItem[index + 1]
+                case .operation(let operation) = calculationHistory[index],
+                case .number(let number) = calculationHistory[index + 1]
             else { break }
             
             try currentResult = operation.calculate(currentResult, number)
