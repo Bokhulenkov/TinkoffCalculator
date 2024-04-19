@@ -89,6 +89,33 @@ extension CalculationListViewContoller: UITableViewDelegate {
         return 90.0
     }
     
+//    add header to history
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50))
+        headerView.backgroundColor = .lightGray
+        
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        let todayDate = formatter.string(from: date)
+        
+        let label = UILabel()
+        label.frame = CGRect(x: 5, y: 5, width: tableView.frame.width, height: 50)
+        label.text = todayDate
+        label.textColor = .black
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.textAlignment = .center
+        headerView.addSubview(label)
+        
+        return headerView
+        
+    }
+//    height header
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 60
+    }
+    
 }
 
 extension CalculationListViewContoller: UITableViewDataSource {
