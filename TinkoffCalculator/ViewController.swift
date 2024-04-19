@@ -46,6 +46,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var label: UILabel!
     
+    @IBOutlet weak var historyButton: UIButton!
+    
     private var count = 0
     
     var calculationHistory: [CalculationHistoryItem] = []
@@ -72,6 +74,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         resetLabelText()
+        historyButton.accessibilityIdentifier = "historyButton"
     }
     
     //    MARK: - Selectors
