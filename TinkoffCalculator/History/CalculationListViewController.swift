@@ -11,7 +11,7 @@ class CalculationListViewContoller: UIViewController {
     
     //    MARK: - Properties
     
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
     
     @IBOutlet weak var calculationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -128,11 +128,11 @@ extension CalculationListViewContoller: UITableViewDataSource {
         //        получаем ячейку
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
 //        номер строки ячейки
+        /* нужна правка
         let historyItem = calculations[indexPath.row]
         cell.configure(with: expressionsToString(historyItem.expression), result: String(historyItem.result))
+     */
         return cell
         
     }
-    
-    
 }

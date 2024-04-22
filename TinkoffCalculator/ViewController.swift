@@ -52,8 +52,9 @@ class ViewController: UIViewController {
     
     var calculationHistory: [CalculationHistoryItem] = []
 //    собираем вычисления
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
 
+     let calculationHistoryStorage = CalculationHistoryStorage()
     
 //    преобразование числа из строки и обратно
     lazy var numberFormatter: NumberFormatter = {
@@ -133,7 +134,9 @@ class ViewController: UIViewController {
             
             //        отображаем отформатированное число
             label.text = numberFormatter.string(from: NSNumber(value: result))
-            calculations.append((calculationHistory, result))
+            let newCalculation = Calculation(exprassions: calculationHistory, result: result)
+            calculations.append(newCalculation)
+            calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Warning!!!"
         }
