@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Calculations {
+struct Calculation {
     
 //    MARK: - Properties
     
@@ -17,7 +17,7 @@ struct Calculations {
 
 // MARK: - Extension
 
-extension Calculations: Codable {
+extension Calculation: Codable {
     
 }
 
@@ -58,5 +58,24 @@ extension CalculationHistoryItem: Codable {
         }
 //        если нет ни одного ключа, то ошибка
         throw CalculationHistoryItemError.itemNotFound
+    }
+}
+
+// class для сохраниния истории вычисления
+class CalculationHistoryStorage {
+    
+    static let calculationHistoryKey = "calculationHistoryKey"
+    
+    func setHistory(calculation: [Calculation]) {
+        if let encoded = try? JSONEncoder().encode(calculation) {
+            UserDefaults.standard.set(encoded, forKey: CalculationHistoryStorage.calculationHistoryKey)
+        }
+    }
+    
+    func loadHistory() -> [Calculation] {
+        if let data = UserDefaults.standard.data(forKey: CalculationHistoryStorage.calculationHistoryKey) {
+            return (try? JSONDecoder().decode([Calculation].self, from: data)) ?? []
+        }
+        return []
     }
 }
