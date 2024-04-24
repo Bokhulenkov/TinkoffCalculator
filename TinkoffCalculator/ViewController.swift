@@ -75,6 +75,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         resetLabelText()
+//        инициализируем загрузку из памяти истории вычислений
+        calculations = calculationHistoryStorage.loadHistory()
+        
         historyButton.accessibilityIdentifier = "historyButton"
     }
     
@@ -134,8 +137,9 @@ class ViewController: UIViewController {
             
             //        отображаем отформатированное число
             label.text = numberFormatter.string(from: NSNumber(value: result))
-            let newCalculation = Calculation(exprassions: calculationHistory, result: result)
+            let newCalculation = Calculation(expressions: calculationHistory, result: result)
             calculations.append(newCalculation)
+//            сохранение в файловую систему
             calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Warning!!!"

@@ -11,7 +11,7 @@ struct Calculation {
     
 //    MARK: - Properties
     
-    let exprassions: [CalculationHistoryItem]
+    let expressions: [CalculationHistoryItem]
     let result: Double
 }
 
@@ -47,8 +47,8 @@ extension CalculationHistoryItem: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CondingKeys.self)
         
-        if let Number = try container.decodeIfPresent(Double.self, forKey: .number) {
-            self = .number(Number)
+        if let number = try container.decodeIfPresent(Double.self, forKey: .number) {
+            self = .number(number)
             return
         }
         

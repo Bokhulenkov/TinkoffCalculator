@@ -31,7 +31,7 @@ class CalculationListViewContoller: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
-        title = "Прошлые вычисления"
+        title = "История вычислений"
     }
     
     override func viewDidLoad() {
@@ -128,10 +128,8 @@ extension CalculationListViewContoller: UITableViewDataSource {
         //        получаем ячейку
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
 //        номер строки ячейки
-        /* нужна правка
         let historyItem = calculations[indexPath.row]
-        cell.configure(with: expressionsToString(historyItem.expression), result: String(historyItem.result))
-     */
+        cell.configure(with: expressionsToString(historyItem.expressions), result: String(historyItem.result))
         return cell
         
     }
