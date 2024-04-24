@@ -48,8 +48,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var historyButton: UIButton!
     
-    private var count = 0
-    
     var calculationHistory: [CalculationHistoryItem] = []
 //    собираем вычисления
     var calculations: [Calculation] = []
@@ -75,6 +73,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         resetLabelText()
+//        инициализируем загрузку из памяти истории вычислений
+        calculations = calculationHistoryStorage.loadHistory()
+        
         historyButton.accessibilityIdentifier = "historyButton"
     }
     
@@ -134,8 +135,9 @@ class ViewController: UIViewController {
             
             //        отображаем отформатированное число
             label.text = numberFormatter.string(from: NSNumber(value: result))
-            let newCalculation = Calculation(exprassions: calculationHistory, result: result)
+            let newCalculation = Calculation(expressions: calculationHistory, result: result)
             calculations.append(newCalculation)
+//            сохранение в файловую систему
             calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Warning!!!"
@@ -174,7 +176,6 @@ class ViewController: UIViewController {
     
     func resetLabelText() {
         label.text = "0"
-        count = 0
     }
     
 
