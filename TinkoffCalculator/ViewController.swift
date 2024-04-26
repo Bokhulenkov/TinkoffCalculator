@@ -202,10 +202,11 @@ class ViewController: UIViewController {
             view.addSubview(alertVeiw)
         }
         
-        UIView.animate(withDuration: 0.5) {
-            self.alertVeiw.alpha = 1
-        } completion: { (_) in
-            UIView.animate(withDuration: 0.5) {
+        UIView.animateKeyframes(withDuration: 2, delay: 0.5) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+                self.alertVeiw.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
                 var newCenter = self.label.center
                 newCenter.y -= self.alertVeiw.bounds.height
                 self.alertVeiw.center = newCenter
