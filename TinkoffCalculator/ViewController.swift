@@ -84,6 +84,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.subviews.forEach {
+            if type(of: $0) == UIButton.self {
+                $0.layer.cornerRadius = 45
+            }
+        }
+        
+        
         resetLabelText()
 //        инициализируем загрузку из памяти истории вычислений
         calculations = calculationHistoryStorage.loadHistory()
