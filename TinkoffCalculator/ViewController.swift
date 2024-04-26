@@ -91,7 +91,7 @@ class ViewController: UIViewController {
         historyButton.accessibilityIdentifier = "historyButton"
         
         view.addSubview(alertVeiw)
-        alertVeiw.isHidden = true
+        alertVeiw.alpha = 0
         alertVeiw.alertText = "Вы нашли пасхалку"
     }
     
@@ -115,7 +115,7 @@ class ViewController: UIViewController {
         }
         
         if label.text == "3,14" {
-            alertVeiw.isHidden = false
+            animateAlert()
         }
     }
     
@@ -192,6 +192,25 @@ class ViewController: UIViewController {
             try currentResult = operation.calculate(currentResult, number)
         }
         return currentResult
+    }
+    
+    func animateAlert() {
+        
+        if !view.contains(alertVeiw) {
+            alertVeiw.alpha = 0
+            alertVeiw.center = view.center
+            view.addSubview(alertVeiw)
+        }
+        
+        UIView.animate(withDuration: 0.5) {
+            self.alertVeiw.alpha = 1
+        } completion: { (_) in
+            UIView.animate(withDuration: 0.5) {
+                var newCenter = self.label.center
+                newCenter.y -= self.alertVeiw.bounds.height
+                self.alertVeiw.center = newCenter
+            }
+        }
     }
     
     func resetLabelText() {
