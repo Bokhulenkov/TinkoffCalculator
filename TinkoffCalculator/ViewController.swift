@@ -48,6 +48,18 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var historyButton: UIButton!
     
+    private let alertVeiw: AlertView = {
+        let screenBounds = UIScreen.main.bounds
+        let alertHeight: CGFloat = 100
+        let alertWidth: CGFloat = screenBounds.width - 40
+//        координаты левого верхнего угла
+        let x: CGFloat = screenBounds.width / 2 - alertWidth / 2
+        let y: CGFloat = screenBounds.height / 2 - alertHeight / 2
+        let alertFrame = CGRect(x: x, y: y, width: alertWidth, height: alertHeight)
+        let alertView = AlertView(frame: alertFrame)
+        return alertView
+    }()
+    
     var calculationHistory: [CalculationHistoryItem] = []
 //    собираем вычисления
     var calculations: [Calculation] = []
@@ -77,6 +89,10 @@ class ViewController: UIViewController {
         calculations = calculationHistoryStorage.loadHistory()
         
         historyButton.accessibilityIdentifier = "historyButton"
+        
+        view.addSubview(alertVeiw)
+        alertVeiw.isHidden = true
+        alertVeiw.alertText = "Вы нашли пасхалку"
     }
     
     //    MARK: - Selectors
@@ -96,6 +112,10 @@ class ViewController: UIViewController {
             label.text = buttonText
         } else {
             label.text?.append(contentsOf: buttonText)
+        }
+        
+        if label.text == "3,14" {
+            alertVeiw.isHidden = false
         }
     }
     
