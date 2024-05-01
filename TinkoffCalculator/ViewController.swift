@@ -40,9 +40,18 @@ enum CalculationHistoryItem {
     case operation(Operation)
 }
 
+protocol LongPressViewProtocol {
+    var shared: UIView { get }
+    
+    func startAnimation()
+    func stopAnimation()
+}
+
 class ViewController: UIViewController {
     
     //    MARK: - Properties
+    
+    @IBOutlet var hidenActionView: UIView!
     
     @IBOutlet weak var label: UILabel!
     
@@ -84,6 +93,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.addSubview(shared)
+        
         view.subviews.forEach {
             if type(of: $0) == UIButton.self {
                 $0.layer.cornerRadius = 45
@@ -104,6 +115,14 @@ class ViewController: UIViewController {
     
     //    MARK: - Selectors
     
+//    long tap animation
+    @objc func tapLongPress(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            startAnimation()
+        } else if gesture.state == .ended {
+            stopAnimation()
+        }
+    }
     
     //    MARK: - Helpers
     
@@ -164,32 +183,32 @@ class ViewController: UIViewController {
             label.text = numberFormatter.string(from: NSNumber(value: result))
             let newCalculation = Calculation(expressions: calculationHistory, result: result)
             calculations.append(newCalculation)
-//            сохранение в файловую систему
+            //            сохранение в файловую систему
             calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Warning!!!"
         }
-            
-            calculationHistory.removeAll()
+        
+        calculationHistory.removeAll()
     }
     
     @IBAction func shawCalculationsList(_ sender: UIButton) {
-
+        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(withIdentifier: "CalculationListViewContoller")
         if let vc = calculationsListVC as? CalculationListViewContoller {
-             vc.calculations = calculations
+            vc.calculations = calculations
         }
         
         navigationController?.pushViewController(calculationsListVC, animated: true)
     }
     
-        
+    
     func calculate() throws -> Double {
         guard case .number(let firstNumber) = calculationHistory[0] else { return 0 }
         var currentResult = firstNumber
         
-//        проходим по массиву и получаем пару  operation number
+        //        проходим по массиву и получаем пару  operation number
         for index in stride(from: 1, to: calculationHistory.count, by: 2) {
             guard
                 case .operation(let operation) = calculationHistory[index],
@@ -225,6 +244,44 @@ class ViewController: UIViewController {
         label.text = "0"
     }
     
+//    long tap animation
+    @IBAction func myActionMethod(_ sender: Any) {
+        let longTapRecognize = UILongPressGestureRecognizer(target: self, action: #selector(tapLongPress))
+        longTapRecognize.allowableMovement = 10
+        view.addGestureRecognizer(longTapRecognize)
+    }
+    
+}
+    // MARK: - Extensions
 
+extension ViewController: LongPressViewProtocol {
+    
+    var shared: UIView {
+        hidenActionView.isHidden = true
+        hidenActionView.backgroundColor = .red
+        hidenActionView.sizeToFit()
+        hidenActionView.shake()
+        return hidenActionView
+    }
+    
+    func startAnimation() {
+        shared.isHidden = false
+    }
+    
+    func stopAnimation() {
+        shared.isHidden = true
+    }
 }
 
+extension UIView {
+    
+    func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration  = 0.5
+        animation.repeatCount = 10
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: center.x, y: center.y - 100))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: center.x, y: center.y + 100))
+        layer.add(animation, forKey: "position")
+    }
+}

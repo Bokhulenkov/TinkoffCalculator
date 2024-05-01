@@ -224,9 +224,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMc-O8-3cB">
+                                <rect key="frame" x="65" y="112" width="284" height="174"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="174" id="Y7V-CN-UhF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xhH-Bp-XAI" secondAttribute="bottom" id="0ap-6r-xMP"/>
                             <constraint firstItem="wXG-si-rdL" firstAttribute="leading" secondItem="7UW-Oa-Dt6" secondAttribute="trailing" id="0xB-j0-v6J"/>
@@ -287,8 +295,10 @@
                             <constraint firstItem="J3c-mr-xFe" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.13" id="fzb-U2-9HD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="viO-5Z-D5V" secondAttribute="trailing" symbolic="YES" id="gHg-4O-Wfd"/>
                             <constraint firstItem="eOb-Ia-Kbb" firstAttribute="bottom" secondItem="wXG-si-rdL" secondAttribute="top" id="gZa-sX-C88"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dMc-O8-3cB" secondAttribute="trailing" constant="65" id="gx9-5P-Daf"/>
                             <constraint firstItem="jXp-mz-Gox" firstAttribute="bottom" secondItem="AJn-Vd-7ap" secondAttribute="top" constant="-20" id="hPm-jg-fVN"/>
                             <constraint firstItem="Ird-tF-1pl" firstAttribute="leading" secondItem="wXG-si-rdL" secondAttribute="trailing" id="hdf-4Q-v4V"/>
+                            <constraint firstItem="dMc-O8-3cB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="hol-3L-iFl"/>
                             <constraint firstItem="7UW-Oa-Dt6" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.25" id="hst-Sm-tAa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hlb-7O-3Km" secondAttribute="bottom" id="hwx-V1-QcB"/>
                             <constraint firstItem="ZtT-Ub-A0t" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.13" id="jLR-35-VhO"/>
@@ -305,18 +315,28 @@
                             <constraint firstItem="EoY-DP-0dN" firstAttribute="leading" secondItem="WW9-aa-L7T" secondAttribute="trailing" id="t08-br-XWN"/>
                             <constraint firstItem="7UW-Oa-Dt6" firstAttribute="bottom" secondItem="EoY-DP-0dN" secondAttribute="top" id="t8p-NP-Q49"/>
                             <constraint firstItem="aEp-k4-wQm" firstAttribute="bottom" secondItem="WW9-aa-L7T" secondAttribute="top" id="tGa-OL-HMp"/>
+                            <constraint firstItem="dMc-O8-3cB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="65" id="thC-YE-HBd"/>
                             <constraint firstItem="wXG-si-rdL" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.25" id="ueB-E0-k0A"/>
                             <constraint firstItem="mkk-Lg-cac" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.13" id="vCc-jq-d5e"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="viO-5Z-D5V" secondAttribute="bottom" id="xp1-BT-2Sn"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Lsg-oE-1ai" appends="YES" id="zhY-NO-7jy"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Калькулятор" id="MhD-3x-Zah"/>
                     <connections>
+                        <outlet property="hidenActionView" destination="dMc-O8-3cB" id="fKx-Tu-6Kk"/>
                         <outlet property="historyButton" destination="Ihu-d1-FdI" id="HK5-O8-RmD"/>
                         <outlet property="label" destination="jXp-mz-Gox" id="qNf-x9-VUv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Lsg-oE-1ai">
+                    <connections>
+                        <action selector="myActionMethod:" destination="BYZ-38-t0r" id="JgS-7S-Awl"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1047.8260869565217" y="3.3482142857142856"/>
         </scene>
